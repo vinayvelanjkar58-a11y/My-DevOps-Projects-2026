@@ -1,0 +1,22 @@
+# Student Academic Management Platform
+
+A Flask-based platform for managing students, faculty, courses, enrollments, and grades.
+
+## Technology Stack
+- Python 3.11
+- Flask
+- Pytest
+- Flake8
+- Jenkins
+- Docker
+- Kubernetes
+
+## Features
+- Student and faculty management
+- Course enrollment
+- Semester credit limit of 18 credits
+- Grade management and GPA calculation
+\n<- Grade management and GPA CI webhook test -->
+<!-- CI webhook test -->
+<!-- CI webhook test -->
+Webhook test Fri Oct 16 07:34:20 UTC 2026
