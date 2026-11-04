@@ -5,8 +5,8 @@
 
 | Detail | Information |
 |---|---|
-| Student Name | DHOKANE KRUSHNA BABASAHEB |
-| PRN | 2125UMLM1079 |
+| Student Name | Vinay Rajendra Velanjkar |
+| PRN | 2125UMLM1107 |
 | Module | Unit 4 – Infrastructure Automation |
 | Project | Enterprise Smart Library Management Platform |
 | Cloud Platform | Amazon Web Services (AWS) |
@@ -244,4 +244,4 @@ The project helps develop practical knowledge of Infrastructure as Code, configu
 
 **Module:** Unit 4 – Infrastructure Automation
 
-**Student:** DHOKANE KRUSHNA BABASAHEB
+**Student:** Vinay Rajendra Velanjkar
