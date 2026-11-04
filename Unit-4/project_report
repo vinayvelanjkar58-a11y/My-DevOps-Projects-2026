@@ -1,0 +1,244 @@
+# Academic Project Report: Unit 4 Mini-Project
+## Enterprise Smart Library Management Platform: Cloud Infrastructure Automation
+
+---
+
+### Candidate Details
+
+- **Student Name:** DHOKANE KRUSHNA BABASAHEB
+- **PRN:** 2125UMLM1079
+- **Module:** Unit 4 – Infrastructure Automation
+- **Target Environment:** AWS Cloud (us-east-1), Ubuntu 22.04 LTS
+- **Technologies:** Terraform, Ansible, Docker, Nginx, Python Flask, SQLite, AWS CLI v2, AWS S3
+
+---
+
+### 1. Executive Summary
+
+This project focuses on automating the deployment of the Enterprise Smart Library Management Platform using modern DevOps tools and cloud technologies.
+
+The project uses HashiCorp Terraform for Infrastructure as Code (IaC) and Ansible for configuration management. Terraform helps automate the creation of AWS cloud resources, while Ansible configures the server and manages application deployment.
+
+The application consists of a RESTful API developed using Python Flask and a SQLite database. Docker is used to package and run the application, while Nginx acts as a reverse proxy to manage incoming requests.
+
+Amazon S3 is used to store database backups with server-side encryption and versioning to improve data protection and recovery.
+
+### 2. Project Objectives
+
+1. **Automated Provisioning:** Create AWS infrastructure, including VPC, subnet, route tables, internet gateway, security groups, EC2 instances, and S3 buckets using Terraform.
+
+2. **Configuration Automation:** Configure the server, install required packages, manage firewall rules, and set up Docker and Nginx using Ansible.
+
+3. **Containerized Application:** Package the Smart Library application into a Docker container for easier deployment and management.
+
+4. **Data Backup:** Store SQLite database backups in Amazon S3 with encryption and versioning.
+
+5. **System Verification:** Test application availability, API endpoints, and cloud infrastructure configurations.
+
+### 3. Tools and Technologies Used
+
+| Component | Technology | Purpose |
+|---|---|---|
+| Cloud Platform | Amazon Web Services | Cloud infrastructure |
+| Infrastructure as Code | Terraform | AWS resource provisioning |
+| Configuration Management | Ansible | Server configuration |
+| Web Server | Nginx | Reverse proxy |
+| Containerization | Docker | Application deployment |
+| Backend Framework | Python Flask | REST API development |
+| Database | SQLite | Data storage |
+| Object Storage | Amazon S3 | Database backups |
+| Command Line Tool | AWS CLI | AWS resource management |
+| Operating System | Ubuntu 22.04 LTS | Server environment |
+
+### 4. Implementation Steps
+
+#### Step 1: Workstation Setup and Authentication
+
+The first step involves preparing the workstation with the required DevOps tools.
+
+The following tools are required:
+
+- AWS CLI
+- Terraform
+- Ansible
+- Git
+- Python
+- OpenSSH
+
+AWS credentials are configured using:
+
+```bash
+aws configure
+```
+
+To verify AWS authentication:
+
+```bash
+aws sts get-caller-identity
+```
+
+An SSH key pair is also prepared to establish a secure connection with the EC2 instance.
+
+#### Step 2: Terraform Infrastructure Provisioning
+
+Terraform is used to create and manage the required AWS infrastructure.
+
+The infrastructure includes:
+
+- Virtual Private Cloud (VPC)
+- Public Subnet
+- Internet Gateway
+- Route Table
+- Security Group
+- EC2 Instance
+- Amazon S3 Bucket
+
+The Terraform configuration is initialized using:
+
+```bash
+terraform init
+```
+
+Configuration validation:
+
+```bash
+terraform validate
+```
+
+Infrastructure planning:
+
+```bash
+terraform plan
+```
+
+Infrastructure deployment:
+
+```bash
+terraform apply
+```
+
+Terraform automates resource creation and provides outputs such as the EC2 public IP address and S3 bucket name.
+
+#### Step 3: Ansible Configuration Management
+
+Ansible is used to configure the EC2 instance after infrastructure provisioning.
+
+The Ansible inventory file contains the EC2 public IP address and SSH connection details.
+
+Example:
+
+```ini
+[smart_library]
+<YOUR_EC2_PUBLIC_IP> ansible_user=ubuntu
+```
+
+The playbook syntax is checked using:
+
+```bash
+ansible-playbook -i inventory.ini site.yml --syntax-check
+```
+
+The playbook is executed using:
+
+```bash
+ansible-playbook -i inventory.ini site.yml
+```
+
+The project uses four main Ansible roles:
+
+**1. Common Role**
+- Installs basic system packages.
+- Configures system utilities.
+- Manages firewall settings.
+
+**2. Docker Role**
+- Installs Docker.
+- Enables and starts the Docker service.
+
+**3. Nginx Role**
+- Installs Nginx.
+- Configures reverse proxy settings.
+- Forwards incoming requests to the Flask application.
+
+**4. Library App Role**
+- Builds the Docker image.
+- Runs the application container.
+- Verifies application availability.
+
+#### Step 4: Application Deployment and Verification
+
+The Smart Library application is developed using Python Flask and uses SQLite for database operations.
+
+Docker packages the application and its dependencies into a container.
+
+Nginx forwards incoming HTTP requests to the application.
+
+The following endpoints are used for testing:
+
+**Root Endpoint**
+
+```bash
+curl http://<YOUR_EC2_PUBLIC_IP>/
+```
+
+**Health Endpoint**
+
+```bash
+curl http://<YOUR_EC2_PUBLIC_IP>/api/health
+```
+
+**Books Catalog Endpoint**
+
+```bash
+curl http://<YOUR_EC2_PUBLIC_IP>/api/books
+```
+
+These endpoints help verify the application's availability and functionality.
+
+#### Step 5: Database Backup Using Amazon S3
+
+Amazon S3 is used to store database backup files.
+
+The backup process helps protect application data and supports recovery when required.
+
+Bucket versioning can be checked using:
+
+```bash
+aws s3api get-bucket-versioning --bucket <YOUR_BUCKET_NAME>
+```
+
+Server-side encryption can be verified using:
+
+```bash
+aws s3api get-bucket-encryption --bucket <YOUR_BUCKET_NAME>
+```
+
+Backup files can be listed using:
+
+```bash
+aws s3 ls s3://<YOUR_BUCKET_NAME>/backups/
+```
+
+S3 versioning helps maintain different versions of stored objects, while encryption provides additional data protection.
+
+### 5. Expected Results
+
+After successful implementation, the project should demonstrate:
+
+1. Successful creation of AWS infrastructure using Terraform.
+2. Successful configuration of the EC2 server using Ansible.
+3. Installation and configuration of Docker and Nginx.
+4. Successful deployment of the Flask-based Library Management application.
+5. Successful response from the application API endpoints.
+6. Database backup storage in Amazon S3.
+7. Enabled S3 bucket versioning and server-side encryption.
+
+### 6. Conclusion
+
+The Unit 4 Mini-Project demonstrates the practical use of Terraform and Ansible in automating cloud infrastructure and server configuration.
+
+Terraform simplifies AWS resource provisioning through Infrastructure as Code, while Ansible automates server configuration and application deployment.
+
+The integration of Docker, Nginx, Python Flask, SQLite, and Amazon S3 provides practical knowledge of modern DevOps workflows.
+
+Through this project, important concepts such as cloud computing, infrastructure automation, configuration management, containerization, application deployment, and data backup can be understood and implemented.
